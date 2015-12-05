@@ -1,0 +1,4 @@
+let add = fn x => fn y => x + y
+in  add 9 100
+end
+(* ==> 3 *)
