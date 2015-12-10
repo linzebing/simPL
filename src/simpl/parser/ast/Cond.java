@@ -33,7 +33,8 @@ public class Cond extends Expr {
     @Override
     public Value eval(State s) throws RuntimeError {
         try {
-            if (((BooleanLiteral) e1).b) {
+            Value flag = e1.eval(s);
+            if (((BoolValue)(flag)).b) {
                 return e2.eval(s);
             } else {
                 return e3.eval(s);

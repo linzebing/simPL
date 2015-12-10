@@ -2,6 +2,7 @@ package simpl.parser.ast;
 
 import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
+import simpl.interpreter.NilValue;
 import simpl.interpreter.Value;
 import simpl.typing.ListType;
 import simpl.typing.TypeEnv;
@@ -24,6 +25,6 @@ public class Nil extends Expr {
     @Override
     public Value eval(State s) throws RuntimeError {
         // TODO
-        return null;
+        return new NilValue();
     }
 }

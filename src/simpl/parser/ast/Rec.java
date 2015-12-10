@@ -1,6 +1,7 @@
 package simpl.parser.ast;
 
 import simpl.interpreter.Env;
+import simpl.interpreter.FunValue;
 import simpl.interpreter.RecValue;
 import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
@@ -36,6 +37,6 @@ public class Rec extends Expr {
     @Override
     public Value eval(State s) throws RuntimeError {
         // TODO
-        return null;
+        return e.eval(State.of(new Env(s.E, x, new RecValue(s.E, x, e)), s.M, s.p));
     }
 }

@@ -8,15 +8,22 @@ public class ConsValue extends Value {
         this.v1 = v1;
         this.v2 = v2;
     }
+    
+    public int getLength() {
+        if (v2 instanceof ConsValue) {
+            return ((ConsValue) v2).getLength() + 1;
+        } else {
+            return 1;
+        }
+    }
 
     public String toString() {
-        // TODO
-        return null;
+        return "list@" + getLength();
     }
 
     @Override
     public boolean equals(Object other) {
-        // TODO
+        //TODO
         return false;
     }
 }

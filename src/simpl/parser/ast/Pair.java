@@ -27,7 +27,8 @@ public class Pair extends BinaryExpr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        Value l_v = l.eval(s);
+        Value r_v = r.eval(s);
+        return new PairValue(l_v, r_v);
     }
 }
