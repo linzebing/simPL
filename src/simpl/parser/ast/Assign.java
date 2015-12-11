@@ -1,5 +1,6 @@
 package simpl.parser.ast;
 
+import simpl.interpreter.Env;
 import simpl.interpreter.RefValue;
 import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
@@ -29,7 +30,9 @@ public class Assign extends BinaryExpr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
-        return null;
+        RefValue l_v = (RefValue)l.eval(s);
+        Value r_v = r.eval(s);
+        s.M.put(l_v.p, r_v);
+        return Value.UNIT;
     }
 }
