@@ -43,14 +43,14 @@ public class Interpreter {
         interpret("doc/examples/mytest.spl");
         /*interpret("doc/examples/plus.spl"); //done
         interpret("doc/examples/factorial.spl"); //done
-        interpret("doc/examples/gcd1.spl");
+        interpret("doc/examples/gcd1.spl"); //done
         interpret("doc/examples/gcd2.spl"); //done
         interpret("doc/examples/max.spl"); //done
         interpret("doc/examples/sum.spl"); //done
         interpret("doc/examples/map.spl");
         interpret("doc/examples/pcf.sum.spl");
         interpret("doc/examples/pcf.even.spl"); //done
-        interpret("doc/examples/pcf.minus.spl"); 
+        interpret("doc/examples/pcf.minus.spl"); //done
         interpret("doc/examples/pcf.factorial.spl"); //done
         interpret("doc/examples/pcf.fibonacci.spl"); //done
         interpret("doc/examples/pcf.twice.spl"); //done //

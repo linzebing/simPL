@@ -52,7 +52,10 @@ public abstract class Substitution {
     public TypeEnv compose(final TypeEnv E) {
         return new TypeEnv() {
             public Type get(Symbol x) {
-                return apply(E.get(x));
+                if(E.get(x) == null)
+                    return null;
+                else
+                    return apply(E.get(x));
             }
         };
     }

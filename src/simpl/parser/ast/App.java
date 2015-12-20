@@ -38,25 +38,21 @@ public class App extends BinaryExpr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        //System.out.println(this.toString());
         TypeResult l_type = l.typecheck(E);
         Substitution sub = l_type.s;
         TypeVar a = new TypeVar(true);
         TypeVar b = new TypeVar(true);
-        sub = l_type.t.unify(new ArrowType(a, b)).compose(sub);
+        sub = sub.apply(l_type.t).unify(new ArrowType(a, b)).compose(sub);
         TypeResult r_type = r.typecheck(sub.compose(E));
         sub = r_type.s.compose(sub);
         Type ra = sub.apply(a);
-        //System.out.println("In App.java: type of a is: " + ra);
         sub = r_type.t.unify(ra).compose(sub);
         Type rb = sub.apply(b);
-        //System.out.println("In App.java: type of b is: " + rb);
         return TypeResult.of(sub, rb);
     }
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        //FunValue l_v = (FunValue) l.eval(s);
         Value l_tmp_v = l.eval(s);
         Value r_v = r.eval(s);
         if (l_tmp_v instanceof FunValue) {

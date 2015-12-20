@@ -26,7 +26,7 @@ public class Seq extends BinaryExpr {
         
         TypeResult r_type = r.typecheck(sub.compose(E));
         sub = r_type.s.compose(sub);
-        return TypeResult.of(sub,r_type.t);
+        return TypeResult.of(sub,sub.apply(r_type.t));
     }
 
     @Override

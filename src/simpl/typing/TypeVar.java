@@ -11,6 +11,9 @@ public class TypeVar extends Type {
 
     public TypeVar(boolean equalityType) {
         this.equalityType = equalityType;
+        if (tvcnt == 16) {
+            System.out.println("here!");
+        }
         name = Symbol.symbol("tv" + ++tvcnt);
     }
 
@@ -21,13 +24,27 @@ public class TypeVar extends Type {
 
     @Override
     public Substitution unify(Type t) throws TypeCircularityError {
-        if (t instanceof TypeVar && ((TypeVar) t).name == name) {
-            return Substitution.IDENTITY;
-        } else if (!t.contains(this)){
-            return Substitution.of(this, t);
-        } else {
-            throw new TypeCircularityError();
+        System.out.println("TypeVar::unify");
+        System.out.println(this);
+        System.out.println(t);
+        if (t instanceof TypeVar) {
+            if(((TypeVar)t).name == name) {
+                System.out.println("TypeVar::case 1");
+                return Substitution.IDENTITY;
+            }
+            else {
+                System.out.println("TypeVar::case 2");
+                return Substitution.of(this, t);
+            }
+                
         }
+        else if(t.contains(this))
+            throw new TypeCircularityError();
+        else {
+            System.out.println("TypeVar::case 3");
+            return Substitution.of(this, t);
+        }
+            
     }
 
     public String toString() {

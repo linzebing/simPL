@@ -23,9 +23,9 @@ public abstract class EqExpr extends BinaryExpr {
         
         TypeResult r_type = r.typecheck(sub.compose(E));
         sub = r_type.s.compose(sub);
-        sub = r_type.t.unify(sub.apply(l_type.t)).compose(sub);
+        sub = sub.apply(r_type.t).unify(sub.apply(l_type.t)).compose(sub);
         if(!r_type.t.isEqualityType() || !l_type.t.isEqualityType())
-            throw new TypeError(null);
-        return TypeResult.of(sub,Type.BOOL);
+            throw new TypeError("");
+        return TypeResult.of(sub, Type.BOOL);
     }
 }

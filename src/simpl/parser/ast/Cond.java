@@ -9,6 +9,7 @@ import simpl.typing.Type;
 import simpl.typing.TypeEnv;
 import simpl.typing.TypeError;
 import simpl.typing.TypeResult;
+import simpl.typing.TypeVar;
 
 public class Cond extends Expr {
 
@@ -28,14 +29,17 @@ public class Cond extends Expr {
     public TypeResult typecheck(TypeEnv E) throws TypeError {
         TypeResult e1_type = e1.typecheck(E);
         Substitution sub = e1_type.s;
-        sub = e1_type.t.unify(Type.BOOL).compose(sub);
+        sub = sub.apply(e1_type.t).unify(Type.BOOL).compose(sub);
         
         TypeResult e2_type = e2.typecheck(sub.compose(E));
         sub = e2_type.s.compose(sub);
-        TypeResult e3_type = e3.typecheck(sub.compose(E));
         
-        sub = e3_type.t.unify(sub.apply(e2_type.t)).compose(sub);
-        return TypeResult.of(sub, sub.apply(e3_type.t));
+        TypeResult e3_type = e3.typecheck(sub.compose(E));
+        Type e2t = e3_type.s.apply(e2_type.t);
+        Type e3t = e3_type.s.apply(e3_type.t);
+        sub = e3t.unify(e2t).compose(sub);
+        
+        return TypeResult.of(e3_type.s, e2t);
     }
 
     @Override

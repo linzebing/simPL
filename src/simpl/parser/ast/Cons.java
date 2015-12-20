@@ -28,7 +28,7 @@ public class Cons extends BinaryExpr {
         
         TypeResult r_type = r.typecheck(sub.compose(E));
         sub = r_type.s.compose(sub);
-        sub = r_type.t.unify(new ListType(sub.apply(l_type.t))).compose(sub);
+        sub = sub.apply(r_type.t).unify(new ListType(sub.apply(l_type.t))).compose(sub);
         return TypeResult.of(sub,sub.apply(r_type.t));
     }
 

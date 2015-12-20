@@ -1,5 +1,7 @@
 package simpl.typing;
 
+import simpl.interpreter.RuntimeError;
+
 public class TypeResult {
 
     public Substitution s;
@@ -10,7 +12,7 @@ public class TypeResult {
         this.t = t;
     }
 
-    public static TypeResult of(Type t) {
+    public static TypeResult of(Type t){
         return TypeResult.of(Substitution.IDENTITY, t);
     }
 

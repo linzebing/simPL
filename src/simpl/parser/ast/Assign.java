@@ -28,12 +28,12 @@ public class Assign extends BinaryExpr {
         TypeResult l_type = l.typecheck(E);
         Substitution sub = l_type.s;
         TypeVar a = new TypeVar(true);
-        sub = l_type.t.unify(new RefType(a)).compose(sub);
+        sub = sub.apply(l_type.t).unify(new RefType(a)).compose(sub);
         
         TypeResult r_type = r.typecheck(sub.compose(E));
         sub = r_type.s.compose(sub);
         
-        sub = r_type.t.unify(sub.apply(a)).compose(sub);
+        sub = sub.apply(r_type.t).unify(sub.apply(a)).compose(sub);
         return TypeResult.of(sub,Type.UNIT);
     }
 

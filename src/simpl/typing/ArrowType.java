@@ -22,7 +22,7 @@ public final class ArrowType extends Type {
         } else if (t instanceof ArrowType) {
             ArrowType tmp = (ArrowType) t;
             Substitution sb  = t1.unify(tmp.t1);
-            return t2.unify(sb.apply(tmp.t2)).compose(sb);
+            return sb.apply(t2).unify(sb.apply(tmp.t2)).compose(sb);
         }
         throw new TypeMismatchError();
     }
