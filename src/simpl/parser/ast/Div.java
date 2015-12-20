@@ -17,7 +17,6 @@ public class Div extends ArithExpr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // RuntimeError…–Œ¥¥¶¿Ì
         Value left = l.eval(s);
         Value right = r.eval(s);
         int result = 0;

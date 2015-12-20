@@ -11,7 +11,6 @@ public class NilValue extends Value { //原来不是public
 
     @Override
     public boolean equals(Object other) {
-        
         if (other instanceof NilValue) {
             return true;
         } else {

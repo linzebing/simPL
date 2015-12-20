@@ -25,7 +25,7 @@ public class Name extends Expr {
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
         // TODO
-        return null;
+        return TypeResult.of(E.get(x));
     }
 
     @Override

@@ -10,26 +10,30 @@ public final class ListType extends Type {
 
     @Override
     public boolean isEqualityType() {
-        // TODO
-        return false;
+        return t.isEqualityType();
     }
 
     @Override
     public Substitution unify(Type t) throws TypeError {
-        // TODO
-        return null;
+        if (t instanceof TypeVar) {
+            return t.unify(this);
+        }
+        if (t instanceof ListType) {
+            ListType x = (ListType)t;
+            Substitution sub = this.t.unify(x.t);
+            return sub;
+        }
+        throw new TypeMismatchError();
     }
 
     @Override
     public boolean contains(TypeVar tv) {
-        // TODO
-        return false;
+        return t.contains(tv);
     }
 
     @Override
     public Type replace(TypeVar a, Type t) {
-        // TODO
-        return null;
+        return new ListType(this.t.replace(a, t));
     }
 
     public String toString() {

@@ -25,8 +25,14 @@ public class Loop extends Expr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult e1_type = e1.typecheck(E);
+        Substitution sub = e1_type.s;
+        sub = e1_type.t.unify(Type.BOOL).compose(sub);
+        
+        TypeResult e2_type = e2.typecheck(sub.compose(E));
+        sub = e2_type.s.compose(sub);
+  
+        return TypeResult.of(sub, Type.UNIT);
     }
 
     @Override

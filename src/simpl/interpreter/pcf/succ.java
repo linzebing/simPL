@@ -15,7 +15,6 @@ import simpl.typing.TypeResult;
 public class succ extends FunValue {
 
     public succ() {
-        // TODO
         super(null, null, null);
     }
 }

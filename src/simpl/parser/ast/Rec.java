@@ -7,6 +7,7 @@ import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
 import simpl.interpreter.Value;
 import simpl.parser.Symbol;
+import simpl.typing.ArrowType;
 import simpl.typing.Substitution;
 import simpl.typing.Type;
 import simpl.typing.TypeEnv;
@@ -30,13 +31,13 @@ public class Rec extends Expr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeVar tv = new TypeVar(true);
+        TypeResult tr = e.typecheck(TypeEnv.of(E, x, tv));
+        return TypeResult.of(tr.s, tr.t);
     }
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // TODO
         return e.eval(State.of(new Env(s.E, x, new RecValue(s.E, x, e)), s.M, s.p));
     }
 }

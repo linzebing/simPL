@@ -17,20 +17,24 @@ public final class ArrowType extends Type {
 
     @Override
     public Substitution unify(Type t) throws TypeError {
-        // TODO
-        return null;
+        if (t instanceof TypeVar) {
+            return t.unify(this);
+        } else if (t instanceof ArrowType) {
+            ArrowType tmp = (ArrowType) t;
+            Substitution sb  = t1.unify(tmp.t1);
+            return t2.unify(sb.apply(tmp.t2)).compose(sb);
+        }
+        throw new TypeMismatchError();
     }
 
     @Override
     public boolean contains(TypeVar tv) {
-        // TODO
-        return false;
+        return t1.contains(tv) || t2.contains(tv);
     }
 
     @Override
     public Type replace(TypeVar a, Type t) {
-        // TODO
-        return null;
+        return new ArrowType(t1.replace(a, t),t2.replace(a, t));
     }
 
     public String toString() {

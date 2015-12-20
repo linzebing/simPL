@@ -21,8 +21,8 @@ public class Ref extends UnaryExpr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        // TODO
-        return null;
+        TypeResult l_type = e.typecheck(E);
+        return TypeResult.of(l_type.s,new RefType(l_type.t));
     }
 
     @Override

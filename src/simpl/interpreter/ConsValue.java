@@ -23,7 +23,9 @@ public class ConsValue extends Value {
 
     @Override
     public boolean equals(Object other) {
-        //TODO
+        if (other instanceof ConsValue) {
+            return v1.equals(((ConsValue) other).v1) && v2.equals(((ConsValue) other).v2);
+        }
         return false;
     }
 }

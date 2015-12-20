@@ -18,7 +18,6 @@ public class GreaterEq extends RelExpr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        // RuntimeErrorÉÐÎ´´¦Àí
         Value l_v = l.eval(s);
         Value r_v = r.eval(s);
         return new BoolValue(((IntValue) l_v).n >= ((IntValue) r_v).n);

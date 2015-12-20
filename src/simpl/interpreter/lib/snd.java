@@ -15,7 +15,6 @@ import simpl.typing.TypeResult;
 public class snd extends FunValue {
 
     public snd() {
-        // TODO
         super(null, null, null);
     }
 }
