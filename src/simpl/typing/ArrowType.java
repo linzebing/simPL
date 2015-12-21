@@ -11,7 +11,6 @@ public final class ArrowType extends Type {
 
     @Override
     public boolean isEqualityType() {
-        // TODO
         return false;
     }
 

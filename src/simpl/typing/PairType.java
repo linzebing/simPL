@@ -21,8 +21,8 @@ public final class PairType extends Type {
         }
         if (t instanceof PairType) {
             PairType tmp = (PairType)t;
-            Substitution sb  = t1.unify(tmp.t1);
-            return t2.unify(sb.apply(tmp.t2)).compose(sb);
+            Substitution sub  = t1.unify(tmp.t1);
+            return t2.unify(sub.apply(tmp.t2)).compose(sub);
         }
         throw new TypeMismatchError();
     }

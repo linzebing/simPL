@@ -29,6 +29,7 @@ public class AndAlso extends BinaryExpr {
         TypeResult r_type = r.typecheck(sub.compose(E));
         sub = r_type.s.compose(sub);
         sub = sub.apply(r_type.t).unify(Type.BOOL).compose(sub);
+        
         return TypeResult.of(sub, Type.BOOL);
     }
 

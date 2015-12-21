@@ -1,8 +1,8 @@
 package simpl.interpreter;
 
-public class NilValue extends Value { //原来不是public
+public class NilValue extends Value { 
 
-    public NilValue() { //原来是protected
+    protected NilValue() {
     }
 
     public String toString() {

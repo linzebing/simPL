@@ -35,8 +35,9 @@ public class Cond extends Expr {
         sub = e2_type.s.compose(sub);
         
         TypeResult e3_type = e3.typecheck(sub.compose(E));
-        Type e2t = e3_type.s.apply(e2_type.t);
-        Type e3t = e3_type.s.apply(e3_type.t);
+        sub = e3_type.s.compose(sub);
+        Type e2t = sub.apply(e2_type.t);
+        Type e3t = sub.apply(e3_type.t);
         sub = e3t.unify(e2t).compose(sub);
         
         return TypeResult.of(e3_type.s, e2t);

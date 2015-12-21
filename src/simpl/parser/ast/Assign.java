@@ -5,6 +5,7 @@ import simpl.interpreter.RefValue;
 import simpl.interpreter.RuntimeError;
 import simpl.interpreter.State;
 import simpl.interpreter.Value;
+import simpl.typing.ListType;
 import simpl.typing.RefType;
 import simpl.typing.Substitution;
 import simpl.typing.Type;
@@ -25,16 +26,13 @@ public class Assign extends BinaryExpr {
 
     @Override
     public TypeResult typecheck(TypeEnv E) throws TypeError {
-        TypeResult l_type = l.typecheck(E);
-        Substitution sub = l_type.s;
-        TypeVar a = new TypeVar(true);
-        sub = sub.apply(l_type.t).unify(new RefType(a)).compose(sub);
+        TypeResult r_type = r.typecheck(E);
+        Substitution sub = r_type.s;
         
-        TypeResult r_type = r.typecheck(sub.compose(E));
-        sub = r_type.s.compose(sub);
-        
-        sub = sub.apply(r_type.t).unify(sub.apply(a)).compose(sub);
-        return TypeResult.of(sub,Type.UNIT);
+        TypeResult l_type = l.typecheck(sub.compose(E));
+        sub = l_type.s.compose(sub);
+        sub = sub.apply(l_type.t).unify(new RefType(sub.apply(r_type.t))).compose(sub);
+        return TypeResult.of(sub, Type.UNIT);
     }
 
     @Override

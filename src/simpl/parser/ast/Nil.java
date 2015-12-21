@@ -23,6 +23,6 @@ public class Nil extends Expr {
 
     @Override
     public Value eval(State s) throws RuntimeError {
-        return new NilValue();
+        return Value.NIL;
     }
 }

@@ -20,8 +20,7 @@ public final class RefType extends Type {
         }
         if (t instanceof RefType) {
             RefType x = (RefType)t;
-            Substitution sub = this.t.unify(x.t);
-            return sub;
+            return this.t.unify(x.t);
         }
         throw new TypeMismatchError();
     }

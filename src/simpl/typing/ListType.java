@@ -20,8 +20,7 @@ public final class ListType extends Type {
         }
         if (t instanceof ListType) {
             ListType x = (ListType)t;
-            Substitution sub = this.t.unify(x.t);
-            return sub;
+            return this.t.unify(x.t);
         }
         throw new TypeMismatchError();
     }

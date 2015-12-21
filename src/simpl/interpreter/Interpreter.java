@@ -41,7 +41,7 @@ public class Interpreter {
 
     public static void main(String[] args) {
         interpret("doc/examples/mytest.spl");
-        /*interpret("doc/examples/plus.spl"); //done
+        interpret("doc/examples/plus.spl"); //done
         interpret("doc/examples/factorial.spl"); //done
         interpret("doc/examples/gcd1.spl"); //done
         interpret("doc/examples/gcd2.spl"); //done
@@ -54,6 +54,6 @@ public class Interpreter {
         interpret("doc/examples/pcf.factorial.spl"); //done
         interpret("doc/examples/pcf.fibonacci.spl"); //done
         interpret("doc/examples/pcf.twice.spl"); //done //
-        interpret("doc/examples/pcf.lists.spl"); //done  */
+        interpret("doc/examples/pcf.lists.spl"); //done  
     }
 }
